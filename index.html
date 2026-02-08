@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Quiz Culture UNIPRO</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .card {
+    background: white;
+    width: 90%;
+    max-width: 420px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+  }
+
+  .header {
+    background: #c1121f; /* rouge */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .logo {
+    height: 60px;
+    margin: 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo img {
+    max-height: 60px;
+    max-width: 100%;
+  }
+
+  .content {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .question {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #0f172a;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0;
+    border: none;
+    border-radius: 6px;
+    background: #1d4ed8; /* bleu */
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background: #163a8a;
+  }
+
+  .footer {
+    background: #f1f5f9;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #0f172a;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 400px) {
+    .question {
+      font-size: 16px;
+    }
+
+    button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="header">
+    🎓 QUIZ CULTURE – UNIPRO
+  </div>
+
+  <!-- Logo : tu mets ton image ici -->
+  <div class="logo">
+    <img src="téléchargement (2).png" alt="Logo UNIPRO">
+  </div>
+
+  <div class="content" id="game">
+    <div class="question" id="question"></div>
+
+    <button onclick="repondre(0)" id="b0"></button>
+    <button onclick="repondre(1)" id="b1"></button>
+    <button onclick="repondre(2)" id="b2"></button>
+    <button onclick="repondre(3)" id="b3"></button>
+  </div>
+
+  <div class="content hidden" id="resultat">
+    <h2>✅ Fin du jeu</h2>
+    <p>Vous avez gagné :</p>
+    <h1><span id="argent"></span> F</h1>
+    <p>
+      Veuillez vous rendre à <b>l’administration de UNIPRO</b><br>
+      pour récupérer votre gain.
+    </p>
+  </div>
+
+  <div class="footer">
+    UNIPRO – Jeu éducatif officiel
+  </div>
+
+</div>
+
+<script>
+let score = 0;
+let index = 0;
+
+const questions = [
+  {
+    q: "Quelle est la mission principale de UNIPRO ?",
+    a: ["Commerce", "Formation et recherche", "Politique", "Sport"],
+    g: 1
+  },
+  {
+    q: "Qui dirige l'université UNIPRO ?",
+    a: ["Le maire", "Le recteur", "Le doyen", "Le président"],
+    g: 1
+  },
+  {
+    q: "Quel document valide un diplôme à UNIPRO ?",
+    a: ["Carte étudiant", "Bulletin", "Attestation", "Diplôme officiel"],
+    g: 3
+  },
+  {
+    q: "La bibliothèque universitaire sert à ?",
+    a: ["Dormir", "Étudier", "Manger", "Jouer"],
+    g: 1
+  }
+];
+
+function afficherQuestion() {
+  if (index >= questions.length) {
+    finJeu();
+    return;
+  }
+
+  let q = questions[index];
+  document.getElementById("question").innerText = q.q;
+
+  q.a.forEach((rep, i) => {
+    document.getElementById("b" + i).innerText = rep;
+  });
+}
+
+function repondre(choix) {
+  if (choix === questions[index].g) {
+    score += 100;
+  }
+  index++;
+  afficherQuestion();
+}
+
+function finJeu() {
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("resultat").classList.remove("hidden");
+  document.getElementById("argent").innerText = score;
+}
+
+// Démarrage automatique
+afficherQuestion();
+</script>
+
+</body>
+</html>
