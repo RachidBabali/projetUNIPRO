@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Quiz Culture UNIPRO</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -109,7 +108,6 @@
     🎓 QUIZ CULTURE – UNIPRO
   </div>
 
-  <!-- Logo : tu mets ton image ici -->
   <div class="logo">
     <img src="téléchargement (2).png" alt="Logo UNIPRO">
   </div>
@@ -128,9 +126,13 @@
     <p>Vous avez gagné :</p>
     <h1><span id="argent"></span> F</h1>
     <p>
-      Veuillez vous rendre à <b>l’administration de UNIPRO</b><br>
-      pour récupérer votre gain.
+      Veuillez vous rendre à <b>l’administration de UNIPRO</b>
+       pour récupérer votre argent ou clique sur ce lien pour 
+       <a href="recupere.html">récupérer votre argent</a>
     </p>
+
+    <!-- Conteneur pour afficher toutes les questions et réponses -->
+    <div id="reponses"></div>
   </div>
 
   <div class="footer">
@@ -150,19 +152,24 @@ const questions = [
     g: 1
   },
   {
-    q: "Qui dirige l'université UNIPRO ?",
-    a: ["Le maire", "Le recteur", "Le doyen", "Le président"],
+    q: "Qui le directeur l'université UNIPRO ?",
+    a: ["Mr diop", "Sheih O. SECK", "Mhamed fall", "cheik thiam"],
     g: 1
   },
   {
-    q: "Quel document valide un diplôme à UNIPRO ?",
-    a: ["Carte étudiant", "Bulletin", "Attestation", "Diplôme officiel"],
-    g: 3
+    q: "UNIPRO a etait creer a quel anner?",
+    a: ["2016", "2000", "2006", "2010"],
+    g: 0
   },
   {
-    q: "La bibliothèque universitaire sert à ?",
-    a: ["Dormir", "Étudier", "Manger", "Jouer"],
-    g: 1
+    q: "Qui est le fondateur d'Unipro ?",
+    a: ["M. Rohit Mittal", "Mr diene", "Mr dione", "Mohamadou sy"],
+    g: 0
+  },
+  {
+    q: "Combien de filières propose l’université UNIPRO ?",
+    a: ["14", "10", "13", "12"],
+    g: 2
   }
 ];
 
@@ -192,6 +199,23 @@ function finJeu() {
   document.getElementById("game").classList.add("hidden");
   document.getElementById("resultat").classList.remove("hidden");
   document.getElementById("argent").innerText = score;
+
+  // Afficher toutes les questions et réponses
+  let html = "";
+//   questions.forEach((q, i) => {
+//     html += `<div style="margin-bottom:15px; text-align:left;">
+//                <b>Q${i+1} : ${q.q}</b><br>`;
+//     q.a.forEach((rep, j) => {
+//       if (j === q.g) {
+//         html += `<span style="color:green;">✔ ${rep}</span><br>`;
+//       } else {
+//         html += `<span style="color:#555;">✖ ${rep}</span><br>`;
+//       }
+//     });
+//     html += `</div>`;
+//   });
+
+  document.getElementById("reponses").innerHTML = html;
 }
 
 // Démarrage automatique
@@ -200,3 +224,4 @@ afficherQuestion();
 
 </body>
 </html>
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>SYSTEM ERROR</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #000000;
+    color: #00ff66; /* vert hack */
+    font-family: "Consolas", "Courier New", monospace;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .screen {
+    text-align: center;
+    max-width: 600px;
+    border: 1px solid #00ff66;
+    padding: 30px;
+    box-shadow: 0 0 25px #00ff66;
+  }
+
+  .icon {
+    font-size: 70px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    letter-spacing: 1px;
+  }
+
+  p {
+    opacity: 0.9;
+  }
+
+  .loading {
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  .blink {
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+  <div class="screen">
+    <div class="icon">☠️</div>
+    <h2>SYSTEM FAILURE</h2>
+    <p>Accès non autorisé détecté.</p>
+    <p>Erreur critique : <b>0xC000021A</b></p>
+    <p class="blink">Connexion au noyau système…</p>
+    <div class="loading" id="load">Extraction des données… 0%</div>
+  </div>
+
+<script>
+let i = 0;
+setInterval(() => {
+  if (i < 100) {
+    i++;
+    document.getElementById("load").innerText =
+      "Extraction des données… " + i + "%";
+  }
+}, 180);
+</script>
+</body>
+</html>
